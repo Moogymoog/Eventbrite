@@ -10,7 +10,9 @@ gem 'bcrypt'
 gem 'dotenv-rails'
 gem 'devise'
 gem 'rack-timeout', '0.3.2'
-
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'stripe'
+gem 'mini_magick'
 
 group :production, :development, :test do
   gem 'rspec-rails', '~> 3.8'
