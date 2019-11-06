@@ -1,0 +1,32 @@
+<div class="container mt-3">
+  <h1 class="pt_5">Editer</h1>
+  <%= form_for [:admin, @user] do |f| %>
+    <div class="form-group">
+      <label>Prénom</label>
+        <%= f.text_field :first_name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Nom</label>
+        <%= f.text_field :last_name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+        <%= f.text_area :description, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+        <%= f.email_field :email, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Admin ?</label>
+        <%= f.check_box :is_admin %>
+    </div>
+
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-dark text-light">Modifier l'utilisateur</button>
+      <a href="<%= admin_users_path %>" class="btn btn-default">Back to Dashboard</button>
+      <a href="<%= admin_user_path(@user.id)%>" data-confirm="Voulez-vous vraiment supprimer cet événément?" data-method="DELETE"><i class="fas fa-trash-alt"></i></a>
+    </div>
+  <% end %>
+</div>

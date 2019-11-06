@@ -1,0 +1,37 @@
+<div class="container mt-3" >
+ <div class="jumbotron bg-light">
+  <h1 class="display-4"><%= @event.title %> | <%= @event.location %></h1>
+  <p class="lead"><%= @event.description %></p>
+  <%if @event.picture.attached?%>
+  <%= image_tag(@event.picture, :size => '100x130')  %>
+  <%else%>
+    <i class="small">Il n'y a pas encore de photo liée à cet événement</i>
+  <%end%>
+  <hr class="my-4">
+  <p>Le <%= @event.start_date %>, pendant <%= @event.duration %> minutes, et pour la modique somme de <%= @event.price %>€, vous aurez la joie de participer à ce pure event. </p>
+  <p class="lead">
+  <% if user_signed_in? %>
+    <% if current_user == @event.admin %>
+    <a class="btn btn-dark btn-lg" href="<%= edit_event_path(@event.id) %>" role="button">Editer</a>
+    <a class="btn btn-default text-dark" href="<%= event_participations_path(@event.id) %>">Les participants</a>
+    <% end %>
+
+    <% if current_user.id != @event.admin.id && is_user_going == true %>
+    <a class="btn btn-dark btn-lg" href="<%= new_event_participation_path(@event.id) %>" role="button">Rejoindre l'événement</a>
+    <% end %>
+
+    <% if is_user_going != true %>
+    <a class="btn btn-dark btn-lg" target="_blank" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOIdc1mb0bSUZeaaU7Ub21D1ggqcwOR_MkVCkasOkIoaoml9yi">Retirer sa participation</a>
+    <% end %>
+
+    <% if user_signed_in? && current_user.is_admin %>
+    <a class="btn btn-default" href="<%= edit_admin_event_path(@event.id) %>" role="button">Modifier l'event en tant qu'admin</a>
+    <% end %>
+
+  <% else %>
+  <% flash[:primary] = "Connectez vous pour pouvoir participer à un événement" %>
+  <% end %>
+  </p>
+
+  </div>
+</div>

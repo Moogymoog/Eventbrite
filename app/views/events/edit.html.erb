@@ -1,0 +1,40 @@
+<div class="container mt-3">
+  <h1 class="pt_5">Editer</h1>
+  <%= form_for @event do |f| %>
+    <div class="form-group">
+      <label>Date</label>
+        <%= f.text_field :start_date, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Durée</label>
+        <%= f.text_field :duration, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Titre de l'évent</label>
+        <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Lieu</label>
+        <%= f.text_field :location, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Prix</label>
+        <%= f.text_field :price, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+        <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag 'Image' %>
+      <%= f.file_field :picture, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-dark text-light">Modifier l'évenement</button>
+      <a href="<%= events_path %>" class="btn btn-default">Revenir à l'accueil</button>
+      <a href="<%= event_path(@event.id)%>" data-confirm="Voulez-vous vraiment supprimer cet événément?" data-method="DELETE"><i class="fas fa-trash-alt"></i></a>
+    </div>
+  <% end %>
+</div>
